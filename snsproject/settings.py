@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-from . import newsapi
 import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = False
 
 
-ALLOWED_HOSTS = ['127.0.0.1','sns99.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1','.herokuapp.com']
 
 
 # Application definition
@@ -144,6 +143,8 @@ MEDIA_URL = 'medi/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 LOGIN_URL = 'login'
+
+from . import newsapi
 
 NEWSAPI = newsapi.NEWS_API
 
