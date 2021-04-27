@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% load static%}
+{% block customcss %}
+<link href="{% static 'list.css' %}" rel="stylesheet">
+{% endblock customcss %}
+
+{% block header%}
+<div class="alert alert-primary snsvar" role="alert">
+    <h3>社内SNS</h3>
+    <div class="dropdown">
+        <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton1"
+            data-bs-toggle="dropdown" aria-expanded="false" style="position: absolute; right: 0px; top: -40px">
+            メニュー
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="{% url 'create' %}">新規投稿</a></li>
+            <li><a class="dropdown-item" href="{% url 'mylist' %}">My投稿</a></li>
+            <li><a class="dropdown-item" href="{% url 'list' %}">投稿一覧へ</a></li>
+            <li><a class="dropdown-item" href="{% url 'news' %}">今日のニュース</a></li>
+            <li>
+                <hr class="dropdown-divider">
+            </li><!-- 横仕切り線 -->
+            <li><a class="dropdown-item" href="{% url 'logout' %}">ログアウト</a></li>
+        </ul>
+    </div>
+
+    <form action="{% url 'list' %}" method="get" class="col-sm-5" role="input"
+        style="position: absolute; right: 130px; top: 14px">
+        <div class="input-group">
+            <input name="keyword" class="form-control" type="text" placeholder="タイトル、投稿者で検索">
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-dark"><i class="fas fa-search"></i>
+            </div>
+        </div>
+    </form>
+
+</div>
+{% endblock header%}
+
+{% block content%}
+<div class="container listcontent">
+    {% for item in object_list %}
+    <div class="alert alert-success" role="alert">
+        <p>タイトル :<a href="{% url 'detail' item.pk %}"> {{ item.title }}</a></p>
+        <p>投稿者 :{{ item.author }}</p>
+        <a href="#" class="btn btn-primary disabled" tabindex="-1" role="button"
+            aria-disabled="true">{{item.good}}いいね!</a>
+        <a href="#" class="btn btn-secondary disabled" tabindex="-1" role="button"
+            aria-disabled="true">既読{{item.read}}人</a>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock content%}

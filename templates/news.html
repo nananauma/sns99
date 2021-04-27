@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% load static%}
+{% block customcss %}
+<link href="{% static 'news.css' %}" rel="stylesheet">
+{% endblock customcss %}
+
+{% block header%}
+<div class="alert alert-primary snsvar" role="alert">
+    <h3>今日のニュース</h3>
+    <div class="dropdown">
+        <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton1"
+            data-bs-toggle="dropdown" aria-expanded="false" style="position: absolute; right: 0px; top: -40px">
+            メニュー
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="{% url 'create' %}">新規投稿</a></li>
+            <li><a class="dropdown-item" href="{% url 'mylist' %}">My投稿</a></li>
+            <li><a class="dropdown-item" href="{% url 'list' %}">投稿一覧へ</a></li>
+            <li>
+                <hr class="dropdown-divider">
+            </li><!-- 横仕切り線 -->
+            <li><a class="dropdown-item" href="{% url 'logout' %}">ログアウト</a></li>
+        </ul>
+    </div>
+</div>
+
+{% endblock header%}
+
+{% block content%}
+{% if user.is_authenticated%}
+<div class="content">
+    <div class="card mb-3" style="max-width: 640px; margin:auto;">
+        {% for content in top_headlines.articles %}
+    <div class="row">
+      <div class="col-md-4 img-box">
+        <img src="{{ content.urlToImage }}" class="card-img" alt="..." height="100%">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title"><a href="{{ content.url }}" target="_blanck">{{ content.title }}</a></h5>
+          <p class="card-text">{{ content.description }}</p>
+          <p class="card-text"><small class="text-muted">{{ content.publishedAt }}</small></p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% else %}
+please login
+{% endif %}
+{% endblock content%}

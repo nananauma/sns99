@@ -1,0 +1,12 @@
+.textArea {
+    width         : 250px;               /* 入力域の最大幅 */
+    background    : #ffffff;             /* 入力域の背景色 */
+    border        : 2px solid #1e6bb9;   /* 入力域の枠線   */
+    border-radius : 4px;                 /* 入力域の角丸   */
+    padding       : 8px;                /* 入力文字の余白 */
+    font-size     : 16px;                /* 入力文字サイズ */
+    color         : #333333;             /* 入力文字の色   */
+    font-weight   : bold;                /* 入力文字の太字 */
+    letter-spacing: .1em;                /* 入力文字の間隔 */
+    line-height   : 19px;                /* 入力文字の間隔 */
+  }

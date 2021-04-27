@@ -1,0 +1,39 @@
+{% extends 'news_base.html' %}
+
+{% block body %}
+  <section class="hero is-dark">
+    <div class="hero-body">
+      <div class="container">
+        <center><h1 class="title">最新のニュース</h1></center>
+      </div>
+    </div>
+  </section>
+
+  <div>
+    {% for content in top_headlines.articles %}
+    <div class="card">
+      <div class="media">
+      <div class="media-left">
+        <figure class="image is-48x48">
+          <img src="{{ content.urlToImage }}" alt="Placeholder image">
+        </figure>
+      </div>
+      <div class="card-content">
+        <div class="media-content">
+          <p class="title is-4"><a href="{{content.url}}" target="_blanck">{{ content.title }}</a></p>
+          <p class="subtitle is-6">{{ content.author }}</p>
+        </div>
+      </div>
+
+      <div class="content">
+        {{ content.description }}
+        <br>
+        <time>{{ content.publishedAt }}</time>
+      </div>
+    </div>
+    {% endfor %}
+    </div>
+
+  </div>
+
+{% endblock %}

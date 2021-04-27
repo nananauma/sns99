@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block header%}
+<div class="alert alert-primary" role="alert">
+    <h3>詳細ページ</h3>
+    <a href="{% url 'logout' %}" class="btn btn-light" tabindex="-1" role="button" aria-disabled="true"style="position: absolute; right: 0px; top: 12px">ログアウト</a>
+    <a href="{% url 'create' %}" class="btn btn-success" tabindex="-1" role="button" aria-disabled="true"style="position: absolute; right: 120px; top: 12px">新規投稿</a>
+</div>
+{% endblock header%}
+
+{% block content%}
+<div class="container">
+    <div class="alert alert-success" role="alert">
+        <p>タイトル:{{ object.title }}</p>
+        <p>投稿者:{{ object.author }}</p>
+        <p><img src="{{ object.sns_image.url }} " width=300></p>
+        <a href="{% url 'good' object.pk %}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">いいねする</a>
+        <a href="{% url 'read' object.pk %}" class="btn btn-secondary" tabindex="-1" role="button" aria-disabled="true">既読にする</a>
+    </div>
+</div>
+{% if user.id %}
+<form method="post" action="{% url 'delete' object.pk %}">{% csrf_token %}
+    <button class="btn" type="submit" onclick='return confirm("本当に削除しますか？");'>削除</button>
+</form>
+
+{% endif %}
+{% endblock content%}

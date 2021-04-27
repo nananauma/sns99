@@ -1,0 +1,10 @@
+.listcontent{
+    padding-top: 20px; /* ヘッダーの後ろに要素が隠れないようにするため */
+}
+
+.snsvar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% load static%}
+{% block customcss %}
+<link href="{% static 'create.css' %}" rel="stylesheet">
+{% endblock customcss %}
+
+{% block header%}
+<div class="alert alert-primary" role="alert">
+    <h3>新規投稿ページ</h3>
+    <div class="dropdown">
+        <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton1"
+            data-bs-toggle="dropdown" aria-expanded="false" style="position: absolute; right: 0px; top: -40px">
+            メニュー
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="{% url 'create' %}">新規投稿</a></li>
+            <li><a class="dropdown-item" href="{% url 'mylist' %}">My投稿</a></li>
+            <li><a class="dropdown-item" href="{% url 'list' %}">投稿一覧へ</a></li>
+            <li>
+                <hr class="dropdown-divider">
+            </li><!-- 横仕切り線 -->
+            <li><a class="dropdown-item" href="{% url 'logout' %}">ログアウト</a></li>
+        </ul>
+    </div>
+</div>
+{% endblock header%}
+
+{% block content %}
+{% if user.is_authenticated %}
+<form method="POST" enctype="multipart/form-data">{% csrf_token %}
+    <div class="container">
+        <div class="alert alert-success" role="alert">
+            <p>タイトル:<input type="text" class="form-control" name="title"></p>
+            <p>内容:<textarea id="textarea" type="text" class="form-control" oninput="textAreaHeightSet(this)"
+                    onchange="textAreaHeightSet(this)" name="content"></textarea></p>
+            <input type="hidden" name="author" value="{{ user.username }}">
+            <p><input id="preview" type="file" name="sns_image"></p>
+        </div>
+        <input class="btn btn-primary" type="submit" value="投稿する">
+    </div>
+</form>
+{% else %}
+please login
+<a href="{% url 'login' %}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">ログイン</a>
+{% endif %}
+
+<script type="text/javascript">
+    //textareaの要素を取得
+    let textarea = document.getElementById('textarea');
+    //textareaのデフォルトの要素の高さを取得
+    let clientHeight = textarea.clientHeight;
+
+    //textareaのinputイベント
+    textarea.addEventListener('input', () => {
+        //textareaの要素の高さを設定（rows属性で行を指定するなら「px」ではなく「auto」で良いかも！）
+        textarea.style.height = clientHeight + 'px';
+        //textareaの入力内容の高さを取得
+        let scrollHeight = textarea.scrollHeight;
+        //textareaの高さに入力内容の高さを設定
+        textarea.style.height = scrollHeight + 'px';
+    });
+</script>
+
+{% endblock content %}
