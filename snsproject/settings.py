@@ -147,7 +147,7 @@ LOGIN_URL = 'login'
 
 #from . import newsapi
 
-#NEWSAPI = newsapi.NEWS_API
+NEWSAPI = newsapi.NEWSAPI
 
 try:
     from .local_settings import *
