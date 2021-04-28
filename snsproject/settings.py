@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'snsapp.apps.SnsappConfig',
-    'news_api',
+    'newsapi-python',
 ]
 
 MIDDLEWARE = [
