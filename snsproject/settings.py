@@ -155,8 +155,8 @@ except ImportError:
     pass
 
 if not DEBUG:
-    SECRET_KEY = os.environ['SECRET_KEY']
-    NEWSAPI = os.environ['NEWS_API']
+    SECRET_KEY = os.environ.get['SECRET_KEY']
+    NEWSAPI = os.environ.get['NEWS_API']
     import django_heroku #追加
     django_heroku.settings(locals()) #追加
 
