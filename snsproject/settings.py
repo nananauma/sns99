@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import dj_database_url
 import os
-import newsapi
 
 
 
@@ -150,7 +149,7 @@ LOGIN_URL = 'login'
 
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-#from . import newsapi
+from . import newsapi
 #NEWS_API = newsapi.NEWS_API
 
 try:
