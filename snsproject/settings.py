@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'snsapp.apps.SnsappConfig',
     'newsapi',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -158,9 +160,21 @@ except ImportError:
 if not DEBUG:
     SECRET_KEY = os.environ['SECRET_KEY']
     NEWS_API = os.environ['NEWS_API']
+    NAME_CLOUDINARY= os.environ['NAME_CLOUDINARY']
+    APIKEY_CLOUDINARY = os.environ['APIKEY_CLOUDINARY']
+    SECR_CLOUDINARY = os.environ['SECR_CLOUDINARY']
     import django_heroku #追加
     django_heroku.settings(locals()) #追加
 
 db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
 DATABASES['default'].update(db_from_env)
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': NAME_CLOUDINARY,
+    'API_KEY': APIKEY_CLOUDINARY,
+    'API_SECRET': SECR_CLOUDINARY
+}
+
+#heroku画像用
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
