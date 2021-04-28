@@ -14,7 +14,7 @@ from pathlib import Path
 import dj_database_url
 import os
 
-from newsapi import NewsApiClient
+from new_sapi import NewsApiClient
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
