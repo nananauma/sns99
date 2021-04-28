@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-#import dj_database_url
+import dj_database_url
 import os
 
 
@@ -25,10 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = False
+DEBUG = False
 
 
-#ALLOWED_HOSTS = ['127.0.0.1','.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1','.herokuapp.com']
 
 
 # Application definition
@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'snsapp.apps.SnsappConfig',
     'newsapi',
-    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
@@ -152,14 +151,17 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 #from . import newsapi
 #NEWS_API = newsapi.NEWS_API
 
-#try:
-#    from .local_settings import *
-#except ImportError:
-#    pass
+try:
+    from .local_settings import *
+except ImportError:
+    pass
 
-#if not DEBUG:
-#    SECRET_KEY = os.environ['SECRET_KEY']
-#    NEWS_API = os.environ['NEWS_API']
-#    import django_heroku #追加
-#    django_heroku.settings(locals()) #追加
+if not DEBUG:
+    SECRET_KEY = os.environ['SECRET_KEY']
+    NEWS_API = os.environ['NEWS_API']
+    import django_heroku #追加
+    django_heroku.settings(locals()) #追加
+
+db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES['default'].update(db_from_env)
 
