@@ -152,14 +152,14 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 #from . import newsapi
 #NEWS_API = newsapi.NEWS_API
 
-try:
-    from .local_settings import *
-except ImportError:
-    pass
+#try:
+#    from .local_settings import *
+#except ImportError:
+#    pass
 
-if not DEBUG:
-    SECRET_KEY = os.environ['SECRET_KEY']
-    NEWS_API = os.environ['NEWS_API']
-    import django_heroku #追加
-    django_heroku.settings(locals()) #追加
+#if not DEBUG:
+#    SECRET_KEY = os.environ['SECRET_KEY']
+#    NEWS_API = os.environ['NEWS_API']
+#    import django_heroku #追加
+#    django_heroku.settings(locals()) #追加
 
