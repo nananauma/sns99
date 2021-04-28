@@ -128,7 +128,7 @@ class SnsNews(generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(SnsNews, self).get_context_data(**kwargs)
-        newsapi = NewsApiClient(api_key=settings.NEWSAPI)
+        newsapi = NewsApiClient(api_key=settings.NEWS_API)
         context['top_headlines'] = newsapi.get_top_headlines(category='entertainment')
         #print(context['top_headlines'])
         return context
