@@ -149,8 +149,8 @@ LOGIN_URL = 'login'
 
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-from . import newsapi
-NEWS_API = newsapi.NEWS_API
+#from . import newsapi
+#NEWS_API = newsapi.NEWS_API
 
 try:
     from .local_settings import *
