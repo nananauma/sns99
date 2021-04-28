@@ -148,7 +148,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 LOGIN_URL = 'login'
 
 
-NEWS_API = newsapi.NEWS_API
+#NEWS_API = newsapi.NEWS_API
 
 try:
     from .local_settings import *
