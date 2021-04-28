@@ -145,9 +145,9 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 LOGIN_URL = 'login'
 
-#from . import newsapi
+from . import newsapi
 
-#NEWSAPI = newsapi.NEWSAPI
+NEWSAPI = newsapi.NEWS_API
 
 try:
     from .local_settings import *
@@ -156,7 +156,7 @@ except ImportError:
 
 if not DEBUG:
     SECRET_KEY = os.environ['SECRET_KEY']
-    NEWSAPI = os.environ['NEWSAPI']
+    NEWSAPI = os.environ['NEWS_API']
     import django_heroku #追加
     django_heroku.settings(locals()) #追加
 
