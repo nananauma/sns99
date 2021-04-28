@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import dj_database_url
 import os
+from . import newsapi
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -145,7 +146,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 LOGIN_URL = 'login'
 
-from . import newsapi
 
 NEWS_API = newsapi.NEWS_API
 
